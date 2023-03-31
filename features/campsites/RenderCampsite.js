@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
+import { baseUrl } from '../../shared/baseUrl';
 
 const RenderCampsite = (props) => {
   const { campsite } = props;
@@ -7,13 +8,13 @@ const RenderCampsite = (props) => {
   if (campsite) {
     return (
       <Card containerStyle={styles.cardContainer}>
-        <Card.Image source={campsite.image}>
+        <Card.Image source={{ uri: baseUrl + campsite.image }}>
           <View style={{ justifyContent: 'center', flex: 1 }}>
             <Text
               style={{
                 color: 'white',
                 textAlign: 'center',
-                fontSize: 20,
+                fontSize: 20
               }}
             >
               {campsite.name}
@@ -43,8 +44,8 @@ const styles = StyleSheet.create({
   cardContainer: {
     padding: 0,
     margin: 0,
-    marginBottom: 20,
-  },
+    marginBottom: 20
+  }
 });
 
 export default RenderCampsite;
