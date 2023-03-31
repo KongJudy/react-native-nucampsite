@@ -28,7 +28,7 @@ const CampsiteInfoScreen = ({ route }) => {
       keyExtractor={(item) => item.id.toString()}
       contentContainerStyle={{
         marginHorizontal: 20,
-        paddingVertical: 20,
+        paddingVertical: 20
       }}
       ListHeaderComponent={
         <>
@@ -52,13 +52,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#43484D',
     padding: 10,
-    paddingTop: 30,
+    paddingTop: 30
   },
   commentItem: {
     paddingVertical: 10,
     paddingHorizontal: 20,
-    backgroundColor: '#fff',
-  },
+    backgroundColor: '#fff'
+  }
 });
 
 export default CampsiteInfoScreen;

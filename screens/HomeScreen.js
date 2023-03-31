@@ -15,7 +15,7 @@ const FeaturedItem = ({ item }) => {
               style={{
                 color: 'white',
                 textAlign: 'center',
-                fontSize: 20,
+                fontSize: 20
               }}
             >
               {item.name}
