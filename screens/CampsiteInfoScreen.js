@@ -4,13 +4,17 @@ import { Input, Rating } from 'react-native-elements';
 import { useSelector, useDispatch } from 'react-redux';
 import { postComment } from '../features/comments/commentsSlice';
 import { toggleFavorite } from '../features/favorites/favoritesSlice';
+<<<<<<< Updated upstream
 import RenderCampsite from '../features/campsites/RenderCampsite';
+=======
+>>>>>>> Stashed changes
 
 const CampsiteInfoScreen = ({ route }) => {
   const { campsite } = route.params;
   const comments = useSelector((state) => state.comments);
   const favorites = useSelector((state) => state.favorites);
   const dispatch = useDispatch();
+<<<<<<< Updated upstream
   const [showModal, setShowModal] = useState(false);
   const [rating, setRating] = useState(5);
   const [author, setAuthor] = useState('');
@@ -32,6 +36,8 @@ const CampsiteInfoScreen = ({ route }) => {
     setAuthor('');
     setText('');
   };
+=======
+>>>>>>> Stashed changes
 
   const renderCommentItem = ({ item }) => {
     return (
@@ -43,7 +49,11 @@ const CampsiteInfoScreen = ({ route }) => {
           style={{ alignItems: 'flex-start', paddingVertical: '5%' }}
         />
         <Text style={{ fontSize: 14 }}>{item.text}</Text>
+<<<<<<< Updated upstream
         <Text style={{ fontSize: 12 }}>{item.rating} Stars</Text>
+=======
+        <Text style={{ fontSize: 12 }}>{item.rating}</Text>
+>>>>>>> Stashed changes
         <Text style={{ fontSize: 12 }}>
           {`-- ${item.author}, ${item.date}`}
         </Text>
