@@ -1,20 +1,16 @@
-import { useState } from 'react';
-import { FlatList, StyleSheet, Text, View, Button, Modal } from 'react-native';
 import { Input, Rating } from 'react-native-elements';
+import { useState } from 'react';
+import { FlatList, StyleSheet, Text, View, Modal, Button } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { postComment } from '../features/comments/commentsSlice';
-import { toggleFavorite } from '../features/favorites/favoritesSlice';
-<<<<<<< Updated upstream
 import RenderCampsite from '../features/campsites/RenderCampsite';
-=======
->>>>>>> Stashed changes
+import { toggleFavorite } from '../features/favorites/favoritesSlice';
+import { postComment } from '../features/comments/commentsSlice';
 
 const CampsiteInfoScreen = ({ route }) => {
   const { campsite } = route.params;
   const comments = useSelector((state) => state.comments);
   const favorites = useSelector((state) => state.favorites);
   const dispatch = useDispatch();
-<<<<<<< Updated upstream
   const [showModal, setShowModal] = useState(false);
   const [rating, setRating] = useState(5);
   const [author, setAuthor] = useState('');
@@ -27,8 +23,8 @@ const CampsiteInfoScreen = ({ route }) => {
       text,
       campsiteId: campsite.id
     };
-    setShowModal(!showModal);
     dispatch(postComment(newComment));
+    setShowModal(!showModal);
   };
 
   const resetForm = () => {
@@ -36,24 +32,17 @@ const CampsiteInfoScreen = ({ route }) => {
     setAuthor('');
     setText('');
   };
-=======
->>>>>>> Stashed changes
 
   const renderCommentItem = ({ item }) => {
     return (
       <View style={styles.commentItem}>
+        <Text style={{ fontSize: 14 }}>{item.text}</Text>
         <Rating
           readonly
           startingValue={item.rating}
           imageSize={10}
           style={{ alignItems: 'flex-start', paddingVertical: '5%' }}
         />
-        <Text style={{ fontSize: 14 }}>{item.text}</Text>
-<<<<<<< Updated upstream
-        <Text style={{ fontSize: 12 }}>{item.rating} Stars</Text>
-=======
-        <Text style={{ fontSize: 12 }}>{item.rating}</Text>
->>>>>>> Stashed changes
         <Text style={{ fontSize: 12 }}>
           {`-- ${item.author}, ${item.date}`}
         </Text>
@@ -129,7 +118,7 @@ const CampsiteInfoScreen = ({ route }) => {
                 setShowModal(!showModal);
                 resetForm();
               }}
-              style={{ color: '#808080' }}
+              color={'#808080'}
               title='Cancel'
             />
           </View>
