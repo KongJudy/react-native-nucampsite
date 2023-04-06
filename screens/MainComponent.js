@@ -129,7 +129,7 @@ const FavoritesNavigator = () => {
         name='Favorites'
         component={FavoritesScreen}
         options={({ navigation }) => ({
-          title: 'Favorite Campsite',
+          title: 'Favorite Campsites',
           headerLeft: () => (
             <Icon
               name='heart'

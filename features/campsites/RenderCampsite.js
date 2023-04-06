@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   cardText: {
     textShadowColor: 'rgba(0,0,0,1)',
-    textShadowOffset: { widht: -1, height: 1 },
+    textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 20,
     textAlign: 'center',
     color: 'white',
