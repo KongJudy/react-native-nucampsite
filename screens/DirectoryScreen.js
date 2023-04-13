@@ -32,7 +32,6 @@ const DirectoryScreen = ({ navigation }) => {
       </Animatable.View>
     );
   };
-
   return (
     <FlatList
       data={campsites.campsitesArray}

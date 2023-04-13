@@ -1,11 +1,11 @@
-import { Card, ListItem, Text, Avatar } from 'react-native-elements';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, Text } from 'react-native';
+import { Avatar, Card, ListItem } from 'react-native-elements';
 import { useSelector } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import Loading from '../components/LoadingComponent';
 import * as Animatable from 'react-native-animatable';
 
-const Mission = () => {
+function Mission() {
   return (
     <Card>
       <Card.Title>Our Mission</Card.Title>
@@ -21,7 +21,7 @@ const Mission = () => {
       </Text>
     </Card>
   );
-};
+}
 
 const AboutScreen = () => {
   const partners = useSelector((state) => state.partners);
@@ -52,7 +52,6 @@ const AboutScreen = () => {
       </ScrollView>
     );
   }
-
   return (
     <ScrollView>
       <Animatable.View animation='fadeInDown' duration={2000} delay={1000}>
@@ -60,17 +59,15 @@ const AboutScreen = () => {
         <Card>
           <Card.Title>Community Partners</Card.Title>
           <Card.Divider />
-          {partners.partnersArray.map((partner) => {
-            return (
-              <ListItem key={partner.id}>
-                <Avatar rounded source={{ uri: baseUrl + partner.image }} />
-                <ListItem.Content>
-                  <ListItem.Title>{partner.name}</ListItem.Title>
-                  <ListItem.Subtitle>{partner.description}</ListItem.Subtitle>
-                </ListItem.Content>
-              </ListItem>
-            );
-          })}
+          {partners.partnersArray.map((partner) => (
+            <ListItem key={partner.id}>
+              <Avatar rounded source={{ uri: baseUrl + partner.image }} />
+              <ListItem.Content>
+                <ListItem.Title>{partner.name}</ListItem.Title>
+                <ListItem.Subtitle>{partner.description}</ListItem.Subtitle>
+              </ListItem.Content>
+            </ListItem>
+          ))}
         </Card>
       </Animatable.View>
     </ScrollView>

@@ -11,7 +11,7 @@ import {
 import { Picker } from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import * as Animatable from 'react-native-animatable';
-import * as Notifcations from 'expo-notifications';
+import * as Notifications from 'expo-notifications';
 
 const ReservationScreen = () => {
   const [campers, setCampers] = useState(1);
@@ -26,25 +26,34 @@ const ReservationScreen = () => {
   };
 
   const handleReservation = () => {
-    const today = date.toLocaleDateString();
     const message = `Number of Campers: ${campers}
-Hike-In? ${hikeIn}
-Date: ${today}`;
-
-    Alert.alert('Begin Search?', message, [
-      {
-        text: 'Cancel',
-        onPress: () => resetForm(),
-        style: 'cancel'
-      },
-      {
-        text: 'OK',
-        onPress: () => {
-          presentLocalNotification(date.toLocaleDateString('en-US'));
-          resetForm();
+                            \nHike-In? ${hikeIn}
+                            \nDate: ${date.toLocaleDateString('en-US')}`;
+    Alert.alert(
+      'Begin Search?',
+      message,
+      [
+        {
+          text: 'Cancel',
+          onPress: () => {
+            console.log('Reservation Search Canceled');
+            resetForm();
+          },
+          style: 'cancel'
+        },
+        {
+          text: 'OK',
+          onPress: () => {
+            presentLocalNotification(date.toLocaleDateString('en-US'));
+            resetForm();
+          }
         }
-      }
-    ]);
+      ],
+      { cancelable: false }
+    );
+    console.log('campers:', campers);
+    console.log('hikeIn:', hikeIn);
+    console.log('date:', date);
   };
 
   const resetForm = () => {
@@ -56,7 +65,7 @@ Date: ${today}`;
 
   const presentLocalNotification = async (reservationDate) => {
     const sendNotification = () => {
-      Notifcations.setNotificationHandler({
+      Notifications.setNotificationHandler({
         handleNotification: async () => ({
           shouldShowAlert: true,
           shouldPlaySound: true,
@@ -64,19 +73,18 @@ Date: ${today}`;
         })
       });
 
-      Notifcations.scheduleNotificationAsync({
+      Notifications.scheduleNotificationAsync({
         content: {
           title: 'Your Campsite Reservation Search',
           body: `Search for ${reservationDate} requested`
         },
-        // trigger set to null makes the notification fire immediately
         trigger: null
       });
     };
-    // await is like a then method used only in async functions
-    let permissions = await Notifcations.getPermissionsAsync();
+
+    let permissions = await Notifications.getPermissionsAsync();
     if (!permissions.granted) {
-      permissions = await Notifcations.requestPermissionsAsync();
+      permissions = await Notifications.requestPermissionsAsync();
     }
     if (permissions.granted) {
       sendNotification();

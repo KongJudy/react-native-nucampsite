@@ -1,6 +1,6 @@
-import { Input, Rating } from 'react-native-elements';
 import { useState } from 'react';
-import { FlatList, StyleSheet, Text, View, Modal, Button } from 'react-native';
+import { Button, FlatList, Modal, StyleSheet, Text, View } from 'react-native';
+import { Input, Rating } from 'react-native-elements';
 import { useSelector, useDispatch } from 'react-redux';
 import RenderCampsite from '../features/campsites/RenderCampsite';
 import { toggleFavorite } from '../features/favorites/favoritesSlice';
@@ -9,16 +9,13 @@ import * as Animatable from 'react-native-animatable';
 
 const CampsiteInfoScreen = ({ route }) => {
   const { campsite } = route.params;
-
   const comments = useSelector((state) => state.comments);
   const favorites = useSelector((state) => state.favorites);
-
-  const dispatch = useDispatch();
-
   const [showModal, setShowModal] = useState(false);
   const [rating, setRating] = useState(5);
   const [author, setAuthor] = useState('');
   const [text, setText] = useState('');
+  const dispatch = useDispatch();
 
   const handleSubmit = () => {
     const newComment = {
@@ -42,9 +39,9 @@ const CampsiteInfoScreen = ({ route }) => {
       <View style={styles.commentItem}>
         <Text style={{ fontSize: 14 }}>{item.text}</Text>
         <Rating
-          readonly
           startingValue={item.rating}
           imageSize={10}
+          readonly
           style={{ alignItems: 'flex-start', paddingVertical: '5%' }}
         />
         <Text style={{ fontSize: 12 }}>
@@ -108,12 +105,12 @@ const CampsiteInfoScreen = ({ route }) => {
           />
           <View style={{ margin: 10 }}>
             <Button
-              title='Submit'
-              color='#5637DD'
               onPress={() => {
                 handleSubmit();
                 resetForm();
               }}
+              color='#5637DD'
+              title='Submit'
             />
           </View>
           <View style={{ margin: 10 }}>

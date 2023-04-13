@@ -61,7 +61,6 @@ const AboutNavigator = () => {
         name='About'
         component={AboutScreen}
         options={({ navigation }) => ({
-          title: 'Home',
           headerLeft: () => (
             <Icon
               name='info-circle'
@@ -204,7 +203,7 @@ const CustomDrawerContent = (props) => (
         <Image source={logo} style={styles.drawerImage} />
       </View>
       <View style={{ flex: 2 }}>
-        <Text style={styles.drawerHeaderText}>Nucamp</Text>
+        <Text style={styles.drawerHeaderText}>NuCamp</Text>
       </View>
     </View>
     <DrawerItemList {...props} labelStyle={{ fontWeight: 'bold' }} />
@@ -281,7 +280,7 @@ const Main = () => {
           }}
         />
         <Drawer.Screen
-          name='ReservationCampsite'
+          name='ReserveCampsite'
           component={ReservationNavigator}
           options={{
             title: 'Reserve Campsite',
@@ -314,11 +313,12 @@ const Main = () => {
         />
         <Drawer.Screen
           name='About'
+          component={AboutNavigator}
           options={{
             title: 'About',
             drawerIcon: ({ color }) => (
               <Icon
-                name='home'
+                name='info-circle'
                 type='font-awesome'
                 size={24}
                 iconStyle={{ width: 24 }}
@@ -326,7 +326,6 @@ const Main = () => {
               />
             )
           }}
-          component={AboutNavigator}
         />
         <Drawer.Screen
           name='Contact'
