@@ -11,6 +11,7 @@ import {
 import { Picker } from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import * as Animatable from 'react-native-animatable';
+import * as Notifcations from 'expo-notifications';
 
 const ReservationScreen = () => {
   const [campers, setCampers] = useState(1);
@@ -38,7 +39,10 @@ Date: ${today}`;
       },
       {
         text: 'OK',
-        onPress: () => resetForm()
+        onPress: () => {
+          presentLocalNotification(date.toLocaleDateString('en-US'));
+          resetForm();
+        }
       }
     ]);
   };
@@ -48,6 +52,35 @@ Date: ${today}`;
     setHikeIn(false);
     setDate(new Date());
     setShowCalendar(false);
+  };
+
+  const presentLocalNotification = async (reservationDate) => {
+    const sendNotification = () => {
+      Notifcations.setNotificationHandler({
+        handleNotification: async () => ({
+          shouldShowAlert: true,
+          shouldPlaySound: true,
+          shouldSetBadge: true
+        })
+      });
+
+      Notifcations.scheduleNotificationAsync({
+        content: {
+          title: 'Your Campsite Reservation Search',
+          body: `Search for ${reservationDate} requested`
+        },
+        // trigger set to null makes the notification fire immediately
+        trigger: null
+      });
+    };
+    // await is like a then method used only in async functions
+    let permissions = await Notifcations.getPermissionsAsync();
+    if (!permissions.granted) {
+      permissions = await Notifcations.requestPermissionsAsync();
+    }
+    if (permissions.granted) {
+      sendNotification();
+    }
   };
 
   return (
